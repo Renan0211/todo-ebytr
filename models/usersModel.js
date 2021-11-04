@@ -32,7 +32,14 @@ const getUserTasks = async (email) => {
   return userTasks;
 };
 
+const insertTask = async (email, task) => {
+  const result = await connnection.then((db) => db.collection(DB_NAME)
+    .update({ email }, { $push: { taskList: task } }));
+  return result;
+};
+
 module.exports = {
   createUser,
   getUserTasks,
+  insertTask,
 };
