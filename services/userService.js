@@ -45,9 +45,20 @@ const updateTask = async (userEmail, oldTask, newTask) => {
   }
 };
 
+const deleteTask = async (userEmail, task) => {
+  try {
+    const result = await model.deleteTask(userEmail, task);
+    return result;
+  } catch (e) {
+    console.log(e.message);
+    return internalError;
+  }
+};
+
 module.exports = {
   createUser,
   getUserTasks,
   insertTask,
   updateTask,
+  deleteTask,
 };

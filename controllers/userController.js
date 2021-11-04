@@ -40,9 +40,20 @@ const updateTask = async (req, res) => {
   return res.status(204).json(result);
 };
 
+const deleteTask = async (req, res) => {
+  const { email, task } = req.body;
+  const result = await service.deleteTask(email, task);
+  if (result.err) {
+    const { err, status } = result;
+    return res.status(status).json(err);
+  }
+  return res.status(204).json(result);
+};
+
 module.exports = {
   createNewUser,
   getUserTasks,
   insertTask,
   updateTask,
+  deleteTask,
 };

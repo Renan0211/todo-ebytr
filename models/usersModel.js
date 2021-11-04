@@ -44,9 +44,16 @@ const updateTask = async (email, oldTask, newTask) => {
   return result;
 };
 
+const deleteTask = async (email, taskToRemove) => {
+  const result = await connection().then((db) => db.collection(DB_NAME)
+    .updateOne({ email }, { $pull: { taskList: taskToRemove } }));
+  return result;
+};
+
 module.exports = {
   createUser,
   getUserTasks,
   insertTask,
   updateTask,
+  deleteTask,
 };
