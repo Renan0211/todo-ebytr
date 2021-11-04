@@ -20,7 +20,18 @@ const getUserTasks = async (req, res) => {
   return res.status(201).json(result);
 };
 
+const insertTask = async (req, res) => {
+  const { email } = req.body;
+  const result = await service.insertTask(email);
+  if (result.err) {
+    const { err, status } = result;
+    return res.status(status).json(err);
+  }
+  return res.status(201).json(result);
+};
+
 module.exports = {
   createNewUser,
   getUserTasks,
+  insertTask,
 };
