@@ -27,7 +27,7 @@ const createUser = async ({ userName, password, email }) => {
 };
 
 const getUserTasks = async (email) => {
-  const userInfo = getUserByEmail(email);
+  const userInfo = await getUserByEmail(email);
   const userTasks = userInfo.taskList;
   return userTasks;
 };
