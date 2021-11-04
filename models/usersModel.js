@@ -10,16 +10,29 @@ const getUserById = async (id) => {
   return user;
 };
 
+const getUserByEmail = async (email) => {
+  const user = await connnection().then((db) => db.collection(DB_NAME)
+    .findOne({ email }));
+  return user;
+};
+
 const createUser = async ({ userName, password, email }) => {
   const insertedUser = await connnection().then((db) => db.collection(DB_NAME)
     .insertOne({
-      userName, password, email, todoList: [],
+      userName, password, email, taskList: [],
     }));
   const newUser = await getUserById(insertedUser.insertedId);
   delete newUser.password;
   return newUser;
 };
 
+const getUserTasks = async (email) => {
+  const userInfo = getUserByEmail(email);
+  const userTasks = userInfo.taskList;
+  return userTasks;
+};
+
 module.exports = {
   createUser,
+  getUserTasks,
 };
