@@ -35,8 +35,19 @@ const insertTask = async (userEmail, newTask) => {
   }
 };
 
+const updateTask = async (userEmail, oldTask, newTask) => {
+  try {
+    const result = await model.updateTask(userEmail, oldTask, newTask);
+    return result;
+  } catch (e) {
+    console.log(e.message);
+    return internalError;
+  }
+};
+
 module.exports = {
   createUser,
   getUserTasks,
   insertTask,
+  updateTask,
 };

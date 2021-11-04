@@ -38,8 +38,15 @@ const insertTask = async (email, task) => {
   return result;
 };
 
+const updateTask = async (email, oldTask, newTask) => {
+  const result = await connection().then((db) => db.collection(DB_NAME)
+    .updateOne({ email, taskList: oldTask }, { $set: { 'taskList.$': newTask } }));
+  return result;
+};
+
 module.exports = {
   createUser,
   getUserTasks,
   insertTask,
+  updateTask,
 };
