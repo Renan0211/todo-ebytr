@@ -6,9 +6,7 @@
 
 const { expect } = require('chai');
 
-const usersModel = {
-  createUser: () => {},
-};
+const usersModel = require('../../../models/usersModel');
 
 describe('insert a new User', () => {
   const userPayload = {
