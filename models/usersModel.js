@@ -1,23 +1,23 @@
 const { ObjectId } = require('mongodb');
-const connnection = require('./connection');
+const connection = require('./connection');
 
 const DB_NAME = 'users';
 
 const getUserById = async (id) => {
   const comparisonId = new ObjectId(id);
-  const user = await connnection().then((db) => db.collection(DB_NAME)
+  const user = await connection().then((db) => db.collection(DB_NAME)
     .findOne({ _id: comparisonId }));
   return user;
 };
 
 const getUserByEmail = async (email) => {
-  const user = await connnection().then((db) => db.collection(DB_NAME)
+  const user = await connection().then((db) => db.collection(DB_NAME)
     .findOne({ email }));
   return user;
 };
 
 const createUser = async ({ userName, password, email }) => {
-  const insertedUser = await connnection().then((db) => db.collection(DB_NAME)
+  const insertedUser = await connection().then((db) => db.collection(DB_NAME)
     .insertOne({
       userName, password, email, taskList: [],
     }));
@@ -33,8 +33,8 @@ const getUserTasks = async (email) => {
 };
 
 const insertTask = async (email, task) => {
-  const result = await connnection.then((db) => db.collection(DB_NAME)
-    .update({ email }, { $push: { taskList: task } }));
+  const result = await connection().then((db) => db.collection(DB_NAME)
+    .updateOne({ email }, { $push: { taskList: task } }));
   return result;
 };
 

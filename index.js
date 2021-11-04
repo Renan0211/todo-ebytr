@@ -10,5 +10,6 @@ app.use(bodyParser.json());
 
 app.post('/users', userController.createNewUser);
 app.get('/tasks', userController.getUserTasks);
+app.post('/tasks', userController.insertTask);
 
 app.listen(PORT, () => console.log(`Listening in the port ${PORT}`));

@@ -25,9 +25,9 @@ const getUserTasks = async (userEmail) => {
   }
 };
 
-const insertTask = async (userEmail) => {
+const insertTask = async (userEmail, newTask) => {
   try {
-    const result = await model.insertTask(userEmail);
+    const result = await model.insertTask(userEmail, newTask);
     return result;
   } catch (e) {
     console.log(e.message);

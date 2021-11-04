@@ -21,8 +21,8 @@ const getUserTasks = async (req, res) => {
 };
 
 const insertTask = async (req, res) => {
-  const { email } = req.body;
-  const result = await service.insertTask(email);
+  const { email, task } = req.body;
+  const result = await service.insertTask(email, task);
   if (result.err) {
     const { err, status } = result;
     return res.status(status).json(err);
