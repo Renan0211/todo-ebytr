@@ -10,6 +10,7 @@ const usersModel = require('../../../models/usersModel');
 
 describe('insert a new User', () => {
   const userPayload = {
+    email: 'talMikhail@chess.com',
     userName: 'MikeT',
     password: 'the mage from riga',
   };
